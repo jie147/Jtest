@@ -3,13 +3,13 @@ package test
 import scala.collection.mutable.ArrayBuffer
 
 object TestSuite {
-//  def autoMakeSuit(testCase:{def apply(string: String):test.TestCase} , flagStart: String = "test"): test.TestSuite = {
-//    val funsName = testCase.getClass.getMethods.map(x => x.getName).filter(m => m.startsWith(flagStart))
-//
-//    val suit = new test.TestSuite()
-//    suit.addTests(funsName.map(t =>  testCase.apply(t) ))
-//    return suit
-//  }
+  def autoMakeSuite(testCase: Object, flagStart: String = "test")(obj:{def apply(string: String):TestCase}): TestSuite = {
+    val names = testCase.getClass.getMethods.map(x => x.getName).filter(m => m.startsWith(flagStart))
+    val suite = new TestSuite()
+    for(n <- names) suite.addTest(obj.apply(n))
+    return suite
+  }
+
 }
 
 class TestSuite {

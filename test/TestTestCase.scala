@@ -28,6 +28,8 @@ class TestTestCase extends TestCase {
 
 object TestTestCase {
 
+  def apply(string: String): TestCase = new TestTestCase().apply(string)
+
   def makeSuite(): TestSuite = {
     val suit = new TestSuite()
     suit.addTest(new TestTestCase().apply("test"))
@@ -37,6 +39,7 @@ object TestTestCase {
 
   def main(args: Array[String]): Unit = {
 //    val t = new TestTestCase("test").run()
-        TextTestRunner.run(makeSuite())
+//        TextTestRunner.run(makeSuite())
+    TextTestRunner.run(TestSuite.autoMakeSuite(new TestTestCase)(TestTestCase))
   }
 }
