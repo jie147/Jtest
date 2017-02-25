@@ -1,3 +1,5 @@
+package testing
+
 import test.{TestCase, TestSuite, TextTestRunner}
 
 /**
